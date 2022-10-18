@@ -6,13 +6,12 @@
             - ca-certificates
             - curl
             - software-properties-common
-            - gnupg
         state: present
         update_cache: yes
 
 -   name: Add GPG key
     apt_key:
-        url: https://download.docker.com/linux/debian/gpg
+        url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
 -   name: Verify fingerprint
@@ -22,10 +21,13 @@
 
 -   name: Set up the repository
     apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu jammy stable
         state: present
-        filename: docker
         update_cache: yes
+
+-   name: Update apt packages
+    apt:
+      update_cache: yes
 
 -   name: Install Docker
     apt:

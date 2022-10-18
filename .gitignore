@@ -1,2 +1,2 @@
 /provisioning/hosts.yml
-/provisioning/htpasswd
+/provisioning/htpasswd*
