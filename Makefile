@@ -3,19 +3,22 @@ up: docker-up
 down: docker-down
 
 docker-up:
-	docker-compose up -d
+	docker compose up -d
 
 docker-down:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 docker-down-clear:
-	docker-compose down -v --remove-orphans
+	docker compose down -v --remove-orphans
 
 docker-pull:
-	docker-compose pull
+	docker compose pull
 
 docker-build:
-	docker-compose build
+	docker compose build
+
+show-initial-password:
+	docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 deploy:
 	ssh deploy@${HOST} -p ${PORT} 'rm -rf registry && mkdir registry'
