@@ -42,11 +42,13 @@ services:
             - docker
 
     docker:
-        image: docker:dind
+        build:
+            context: ./docker/production/dind
         privileged: true
         environment:
             DOCKER_TLS_CERTDIR: /certs
         volumes:
+            - /etc/docker/dind-daemon.json:/etc/docker/daemon.json:ro
             - jenkins-data:/var/jenkins_home
             - docker-certs:/certs/client
             - docker-data:/var/lib/docker

@@ -18,7 +18,7 @@ docker-build:
 	docker compose build
 
 show-initial-password:
-	docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword'
 
 deploy:
 	#ssh deploy@${HOST} -p ${PORT} 'rm -rf registry && mkdir registry'
@@ -34,7 +34,7 @@ deploy:
 	scp -P ${PORT} -r docker deploy@${HOST}:jenkins/docker
 	scp -P ${PORT} provisioning/${HTPASSWD_FILE} deploy@${HOST}:jenkins/htpasswd
 	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && echo "COMPOSE_PROJECT_NAME=jenkins" >> .env'
-	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker-compose down --remove-orphans'
-	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker-compose pull'
-	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker-compose build --pull'
-	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker-compose up -d'
+	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker compose down --remove-orphans'
+	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker compose pull'
+	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker compose build --pull'
+	ssh deploy@${HOST} -p ${PORT} 'cd jenkins && docker compose up -d'

@@ -25,3 +25,6 @@
 
 1. Run command:
 >cd provisioning && make show-initial-password
+
+1. In case of problems, try at server VM.
+>docker compose down --remove-orphans && docker system prune -af && docker volume prune
