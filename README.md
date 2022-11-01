@@ -23,5 +23,5 @@
 
 1. Open jenkins.yuor.site in browser and wait until "Unlock Jenkins" prompt.
 
-1. Run ad-hoc ansible command:
+1. Run command:
 >cd provisioning && make show-initial-password
