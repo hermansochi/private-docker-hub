@@ -1,3 +1,5 @@
+# Depricated! see phonebook-jenkins, phonebook-registry & phonebook-traefic repos
+
 # Private Docker Registry & Jenkins for Ubuntu 22.04
 
 1. rename provisioning/hosts.yml.dst to hosts.yml and edit.

@@ -52,9 +52,18 @@ services:
         environment:
             DOCKER_TLS_CERTDIR: /certs
         volumes:
+            - /etc/docker/dind-daemon.json:/etc/docker/daemon.json:ro
             - jenkins-data:/var/jenkins_home
             - docker-certs:/certs/client
             - docker-data:/var/lib/docker
+
+    ui:
+        image: joxit/docker-registry-ui:static
+        environment:
+            - REGISTRY_TITLE=Private Docker Registry
+            - REGISTRY_URL=https://ui.hub.herman.team
+        depends_on:
+            - registry
 
 volumes:
     registry:
